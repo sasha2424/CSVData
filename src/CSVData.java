@@ -28,8 +28,8 @@ public class CSVData {
 	 * @param ignore
 	 *            The number of lines to ignore at the top of the file.
 	 */
-	public static void readCSVFile(String filename, String[] columnNames, int ignore) {
-		
+	public static CSVData readCSVFile(String filename, String[] columnNames, int ignore) {
+		return null;
 	}
 
 	/***
@@ -41,8 +41,8 @@ public class CSVData {
 	 * @param ignore
 	 *            The number of lines to ignore at the top of the file.
 	 */
-	public static void readCSVFile(String filename, int ignore) {
-
+	public static CSVData readCSVFile(String filename, int ignore) {
+		return null;
 	}
 	
 	/***
@@ -62,5 +62,20 @@ public class CSVData {
 		}
 		return output.toString();
 	}
+	
+	
+	public double[] getRow(int row){
+		return data[row];
+	}
+	
+	public double[] getColumn(int column){
+		double[] r = new double[data[0].length];
+		for(int i = 0; i < data.length;i++){
+			r[i] = data[i][column];
+		}
+		return r;
+	}
+	
+	
 
 }
