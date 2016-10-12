@@ -63,11 +63,20 @@ public class CSVData {
 		return output.toString();
 	}
 	
-	
+	/***
+	 * Returns a certain row of the data .
+	 * @param row Row number to be extracted.
+	 * @return Double array with the data.
+	 */
 	public double[] getRow(int row){
 		return data[row];
 	}
 	
+	/***
+	 * Returns a certain column of the data.
+	 * @param column Column index with the data
+	 * @return Double array with the data.
+	 */
 	public double[] getColumn(int column){
 		double[] r = new double[data[0].length];
 		for(int i = 0; i < data.length;i++){
@@ -76,6 +85,11 @@ public class CSVData {
 		return r;
 	}
 	
+	/***
+	 * Returns a certain column of the data.
+	 * @param column Column name with the data
+	 * @return Double array with the data.
+	 */
 	public double[] getColumn(String column){
 		int c = 0;
 		for(int i = 0; i < columnNames.length;i++){
@@ -90,6 +104,8 @@ public class CSVData {
 		}
 		return r;
 	}
+	
+	
 	
 	
 
