@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+
 /***
  * \A Class to read/write numerical CSV files and allow easy access of data
  * 
@@ -25,7 +29,7 @@ public class CSVData {
 	 *            The number of lines to ignore at the top of the file.
 	 */
 	public static void readCSVFile(String filename, String[] columnNames, int ignore) {
-
+		
 	}
 
 	/***
@@ -39,6 +43,24 @@ public class CSVData {
 	 */
 	public static void readCSVFile(String filename, int ignore) {
 
+	}
+	
+	/***
+	 * Reads data from a file and returns it all as a String
+	 * @param filePath Where the data is 
+	 * @return
+	 */
+	public static String readFileAsString(String filePath){
+		StringBuilder output = new StringBuilder();
+		try(Scanner scanner = new Scanner(new File(filePath))){
+			while(scanner.hasNext()){
+				String line = scanner.nextLine();
+				output.append(line);
+			}
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+		return output.toString();
 	}
 
 }
