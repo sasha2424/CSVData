@@ -76,6 +76,21 @@ public class CSVData {
 		return r;
 	}
 	
+	public double[] getColumn(String column){
+		int c = 0;
+		for(int i = 0; i < columnNames.length;i++){
+			if(columnNames[i].equals(column)){
+				c = i;
+				break;
+			}
+		}
+		double[] r = new double[data[0].length];
+		for(int i = 0; i < data.length;i++){
+			r[i] = data[i][c];
+		}
+		return r;
+	}
+	
 	
 
 }
