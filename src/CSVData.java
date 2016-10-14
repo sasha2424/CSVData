@@ -12,9 +12,34 @@ public class CSVData {
 
 	private double[][] data;
 	private String[] columnNames;
+	private String filePath;
 
-	public CSVData() {
+	public CSVData(String filepath, String[] columnNames, int startRow,String lineSeparator) {
+		this.filePath = filepath;
 
+		String dataString = readFileAsString(filepath);
+		String[] lines = dataString.split(lineSeparator);
+
+		// number of data points
+		int n = lines.length - startRow;
+		int numRows = n;
+		int numColumns = columnNames.length;
+
+		// create storage for column names
+		this.columnNames = columnNames;
+
+		// create storage for data
+		this.data = new double[n][numColumns];
+		for (int i = 0; i < lines.length - startRow; i++) {
+			String line = lines[startRow + i];
+			String[] coords = line.split(",");
+			for (int j = 0; j < numColumns; j++) {
+				if (coords[j].endsWith("#"))
+					coords[j] = coords[j].substring(0, coords[j].length() - 1);
+				double val = Double.parseDouble(coords[j]);
+				data[i][j] = val;
+			}
+		}
 	}
 
 	/***
@@ -28,8 +53,8 @@ public class CSVData {
 	 * @param ignore
 	 *            The number of lines to ignore at the top of the file.
 	 */
-	public static CSVData readCSVFile(String filename, String[] columnNames, int ignore, String lineSep) {
-		return null;
+	public static CSVData readCSVFile(String filePath, String[] columnNames, int ignore, String lineSep) {
+		return new CSVData(filePath,columnNames,ignore,lineSep);
 	}
 
 	/***
@@ -147,42 +172,51 @@ public class CSVData {
 	}
 
 	/***
-	 * Gets columns and returns as 2d array. Gets columns between inclusive the given numbers.
-	 * @param min smallest column to get
-	 * @param max largest column to get
+	 * Gets columns and returns as 2d array. Gets columns between inclusive the
+	 * given numbers.
+	 * 
+	 * @param min
+	 *            smallest column to get
+	 * @param max
+	 *            largest column to get
 	 * @return 2d array of data from designated columns
 	 */
 	public double[][] getColumns(int min, int max) {
-		double[][] r = new double[max-min+1][data[0].length];
-		for(int i = min;i <= max;i++){
-			r[i]=this.getColumn(i);
+		double[][] r = new double[max - min + 1][data[0].length];
+		for (int i = min; i <= max; i++) {
+			r[i] = this.getColumn(i);
 		}
 		return r;
 
 	}
-	
+
 	/***
-	 * Gets columns and returns as 2d array. Gets columns listed in integer array.
-	 * @param columns columns to be extracted
+	 * Gets columns and returns as 2d array. Gets columns listed in integer
+	 * array.
+	 * 
+	 * @param columns
+	 *            columns to be extracted
 	 * @return 2d array of data from designated columns
 	 */
 	public double[][] getColumns(int[] columns) {
 		double[][] r = new double[columns.length][data[0].length];
-		for(int i = 0;i <= columns.length;i++){
-			r[i]=this.getColumn(columns[i]);
+		for (int i = 0; i <= columns.length; i++) {
+			r[i] = this.getColumn(columns[i]);
 		}
 		return r;
 	}
 
 	/***
 	 * Gets columns given in list and returns data from them as a 2d array.
-	 * @param columns columns from list of columns
-	 * @return  2d array of data from designated columns
+	 * 
+	 * @param columns
+	 *            columns from list of columns
+	 * @return 2d array of data from designated columns
 	 */
 	public double[][] getColumns(String[] columns) {
 		double[][] r = new double[columns.length][data[0].length];
-		for(int i = 0;i <= columns.length;i++){
-			r[i]=this.getColumn(columns[i]);
+		for (int i = 0; i <= columns.length; i++) {
+			r[i] = this.getColumn(columns[i]);
 		}
 		return r;
 	}
