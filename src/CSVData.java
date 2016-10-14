@@ -139,7 +139,7 @@ public class CSVData {
 	 * @return
 	 */
 	public double[][] getRows(int[] rows) {
-		double[][] r = new double[data.length][data[0].length];
+		double[][] r = new double[rows.length][data[0].length];
 		for (int i = 0; i <= rows.length; i++) {
 			r[i] = data[rows[i]];
 		}
@@ -152,8 +152,12 @@ public class CSVData {
 	 * @param max largest column to get
 	 * @return 2d array of data from designated columns
 	 */
-	public double[] getColumns(int min, int max) {
-		return null;
+	public double[][] getColumns(int min, int max) {
+		double[][] r = new double[max-min+1][data[0].length];
+		for(int i = min;i <= max;i++){
+			r[i]=this.getColumn(i);
+		}
+		return r;
 
 	}
 	
@@ -162,8 +166,12 @@ public class CSVData {
 	 * @param columns columns to be extracted
 	 * @return 2d array of data from designated columns
 	 */
-	public double[] getColumns(int[] columns) {
-		return null;
+	public double[][] getColumns(int[] columns) {
+		double[][] r = new double[columns.length][data[0].length];
+		for(int i = 0;i <= columns.length;i++){
+			r[i]=this.getColumn(columns[i]);
+		}
+		return r;
 	}
 
 	/***
@@ -171,8 +179,12 @@ public class CSVData {
 	 * @param columns columns from list of columns
 	 * @return  2d array of data from designated columns
 	 */
-	public double[] getColumns(String[] columns) {
-		return null;
+	public double[][] getColumns(String[] columns) {
+		double[][] r = new double[columns.length][data[0].length];
+		for(int i = 0;i <= columns.length;i++){
+			r[i]=this.getColumn(columns[i]);
+		}
+		return r;
 	}
 
 }
