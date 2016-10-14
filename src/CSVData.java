@@ -34,7 +34,7 @@ public class CSVData {
 			String line = lines[startRow + i];
 			String[] coords = line.split(",");
 			for (int j = 0; j < numColumns; j++) {
-				if (coords[j].endsWith("#"))
+				if (coords[j].endsWith(lineSeparator))
 					coords[j] = coords[j].substring(0, coords[j].length() - 1);
 				double val = Double.parseDouble(coords[j]);
 				data[i][j] = val;
