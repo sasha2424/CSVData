@@ -44,92 +44,135 @@ public class CSVData {
 	public static CSVData readCSVFile(String filename, int ignore, String lineSep) {
 		return null;
 	}
-	
+
 	/***
 	 * Reads data from a file and returns it all as a String
-	 * @param filePath Where the data is 
+	 * 
+	 * @param filePath
+	 *            Where the data is
 	 * @return
 	 */
-	private static String readFileAsString(String filePath){
+	private static String readFileAsString(String filePath) {
 		StringBuilder output = new StringBuilder();
-		try(Scanner scanner = new Scanner(new File(filePath))){
-			while(scanner.hasNext()){
+		try (Scanner scanner = new Scanner(new File(filePath))) {
+			while (scanner.hasNext()) {
 				String line = scanner.nextLine();
 				output.append(line);
 			}
-		} catch (IOException e){
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return output.toString();
 	}
-	
+
 	/***
 	 * Returns a certain row of the data .
-	 * @param row Row number to be extracted.
+	 * 
+	 * @param row
+	 *            Row number to be extracted.
 	 * @return Double array with the data.
 	 */
-	public double[] getRow(int row){
+	public double[] getRow(int row) {
 		return data[row];
 	}
-	
+
 	/***
 	 * Returns a certain column of the data.
-	 * @param column Column index with the data
+	 * 
+	 * @param column
+	 *            Column index with the data
 	 * @return Double array with the data.
 	 */
-	public double[] getColumn(int column){
+	public double[] getColumn(int column) {
 		double[] r = new double[data[0].length];
-		for(int i = 0; i < data.length;i++){
+		for (int i = 0; i < data.length; i++) {
 			r[i] = data[i][column];
 		}
 		return r;
 	}
-	
+
 	/***
 	 * Returns a certain column of the data.
-	 * @param column Column name with the data
+	 * 
+	 * @param column
+	 *            Column name with the data
 	 * @return Double array with the data.
 	 */
-	public double[] getColumn(String column){
+	public double[] getColumn(String column) {
 		int c = 0;
-		for(int i = 0; i < columnNames.length;i++){
-			if(columnNames[i].equals(column)){
+		for (int i = 0; i < columnNames.length; i++) {
+			if (columnNames[i].equals(column)) {
 				c = i;
 				break;
 			}
 		}
 		double[] r = new double[data[0].length];
-		for(int i = 0; i < data.length;i++){
+		for (int i = 0; i < data.length; i++) {
 			r[i] = data[i][c];
 		}
 		return r;
 	}
+
 	/***
 	 * Returns a 2d array of data from specific rows
-	 * @param min smallest row
-	 * @param max largest row
-	 * @return 2d double array with data from 
+	 * 
+	 * @param min
+	 *            smallest row
+	 * @param max
+	 *            largest row
+	 * @return 2d double array with data from
 	 */
-	public double[][] getRows(int min, int max){
+	public double[][] getRows(int min, int max) {
 		double[][] r = new double[data.length][data[0].length];
-		for(int i = min; i <= max; i++){
+		for (int i = min; i <= max; i++) {
 			r[i] = data[i];
 		}
 		return r;
 	}
+
 	/***
-	 * This method returns a 2d array of data 
-	 * @param rows this is an array of the data that is to be extracted
+	 * This method returns a 2d array of data
+	 * 
+	 * @param rows
+	 *            this is an array of the data that is to be extracted
 	 * 
 	 * @return
 	 */
-	public double[][] getRows(int[] rows){
+	public double[][] getRows(int[] rows) {
 		double[][] r = new double[data.length][data[0].length];
-		for(int i = 0; i <= rows.length; i++){
+		for (int i = 0; i <= rows.length; i++) {
 			r[i] = data[rows[i]];
 		}
 		return r;
 	}
+
+	/***
+	 * Gets columns and returns as 2d array. Gets columns between inclusive the given numbers.
+	 * @param min smallest column to get
+	 * @param max largest column to get
+	 * @return 2d array of data from designated columns
+	 */
+	public double[] getColumns(int min, int max) {
+		return null;
+
+	}
 	
+	/***
+	 * Gets columns and returns as 2d array. Gets columns listed in integer array.
+	 * @param columns columns to be extracted
+	 * @return 2d array of data from designated columns
+	 */
+	public double[] getColumns(int[] columns) {
+		return null;
+	}
+
+	/***
+	 * Gets columns given in list and returns data from them as a 2d array.
+	 * @param columns columns from list of columns
+	 * @return  2d array of data from designated columns
+	 */
+	public double[] getColumns(String[] columns) {
+		return null;
+	}
 
 }
