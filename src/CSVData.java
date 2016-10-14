@@ -104,9 +104,32 @@ public class CSVData {
 		}
 		return r;
 	}
-	
-	
-	
+	/***
+	 * Returns a 2d array of data from specific rows
+	 * @param min smallest row
+	 * @param max largest row
+	 * @return 2d double array with data from 
+	 */
+	public double[][] getRows(int min, int max){
+		double[][] r = new double[data.length][data[0].length];
+		for(int i = min; i <= max; i++){
+			r[i] = data[i];
+		}
+		return r;
+	}
+	/***
+	 * This method returns a 2d array of data 
+	 * @param rows this is an array of the data that is to be extracted
+	 * 
+	 * @return
+	 */
+	public double[][] getRows(int[] rows){
+		double[][] r = new double[data.length][data[0].length];
+		for(int i = 0; i <= rows.length; i++){
+			r[i] = data[rows[i]];
+		}
+		return r;
+	}
 	
 
 }
