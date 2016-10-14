@@ -82,6 +82,9 @@ public class CSVData {
 	 */
 	public static CSVData readCSVFile(String filename, int ignore, String lineSep) {
 		String[] names = new String[getNumberOfColumns(filename,ignore,lineSep)];
+		for(int i = 0; i < names.length; i++){
+			names[i] = "Column" + i;
+		}
 		return new CSVData(filename,names,ignore,lineSep);
 	}
 
@@ -234,6 +237,13 @@ public class CSVData {
 			r[i] = this.getColumn(columns[i]);
 		}
 		return r;
+	}
+	/***
+	 * Returns Column Names for data
+	 * @return Returns Column Names
+	 */
+	public String[] getColumnNames(){
+		return columnNames;
 	}
 
 }
