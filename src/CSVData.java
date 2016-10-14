@@ -28,7 +28,7 @@ public class CSVData {
 	 * @param ignore
 	 *            The number of lines to ignore at the top of the file.
 	 */
-	public static CSVData readCSVFile(String filename, String[] columnNames, int ignore) {
+	public static CSVData readCSVFile(String filename, String[] columnNames, int ignore, String lineSep) {
 		return null;
 	}
 
@@ -41,7 +41,7 @@ public class CSVData {
 	 * @param ignore
 	 *            The number of lines to ignore at the top of the file.
 	 */
-	public static CSVData readCSVFile(String filename, int ignore) {
+	public static CSVData readCSVFile(String filename, int ignore, String lineSep) {
 		return null;
 	}
 	
@@ -50,7 +50,7 @@ public class CSVData {
 	 * @param filePath Where the data is 
 	 * @return
 	 */
-	public static String readFileAsString(String filePath){
+	private static String readFileAsString(String filePath){
 		StringBuilder output = new StringBuilder();
 		try(Scanner scanner = new Scanner(new File(filePath))){
 			while(scanner.hasNext()){
