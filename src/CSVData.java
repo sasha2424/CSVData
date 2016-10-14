@@ -41,6 +41,20 @@ public class CSVData {
 			}
 		}
 	}
+	/***
+	 * Gets number of columns for data in CSV file
+	 * @param filepath
+	 * @param ignore number of lines to ignore before data starts
+	 * @param lineSeparator the character that separates lines
+	 * @return the number of columns for data in CSV file
+	 */
+	private static int getNumberOfColumns(String filepath,int ignore, String lineSeparator){
+		String dataString = readFileAsString(filepath);
+		String[] lines = dataString.split(lineSeparator);
+		String[] terms = lines[ignore].split(",");
+		return terms.length;
+		
+	}
 
 	/***
 	 * Returns a new CSVData object for a file ignoring lines at top. Data is
@@ -67,7 +81,8 @@ public class CSVData {
 	 *            The number of lines to ignore at the top of the file.
 	 */
 	public static CSVData readCSVFile(String filename, int ignore, String lineSep) {
-		return null;
+		String[] names = new String[getNumberOfColumns(filename,ignore,lineSep)];
+		return new CSVData(filename,names,ignore,lineSep);
 	}
 
 	/***
