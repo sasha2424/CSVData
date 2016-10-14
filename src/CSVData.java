@@ -127,7 +127,7 @@ public class CSVData {
 	 * @return Double array with the data.
 	 */
 	public double[] getColumn(int column) {
-		double[] r = new double[data[0].length];
+		double[] r = new double[data.length];
 		for (int i = 0; i < data.length; i++) {
 			r[i] = data[i][column];
 		}
